@@ -1,11 +1,8 @@
 package com.homework.steps;
 
-
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-import com.cognifide.qa.bb.provider.selenium.BobcatWait;
 import com.google.inject.Inject;
 
 import com.homework.pageobjects.InboxPage;
@@ -15,12 +12,10 @@ import cucumber.api.java.en.When;
 import cucumber.runtime.java.guice.ScenarioScoped;
 import com.homework.pageobjects.LoginPage;
 import org.junit.Assert;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 
 @ScenarioScoped
 public class LoginSteps {
-
-
 
   @Inject
   private LoginPage loginPage;
@@ -28,8 +23,13 @@ public class LoginSteps {
   @Inject
   private InboxPage inboxPage;
 
-  @Inject
+  @Given("^Im loggded in$")
+  public void im_logded_in(){
+    loginPage.open();
+    loginPage.provideUserName("mike.tste@gmail.com");
+    loginPage.providePassword();
 
+  }
 
   @Given("^I have opened main page$")
   public void I_have_opened_main_page() {
@@ -41,10 +41,9 @@ public class LoginSteps {
     loginPage.provideUserName("mike.tste@gmail.com");
   }
 
-  @When("^correct pasword$")
+  @When("^correct password$")
   public void correct_pasword()  {
     loginPage.providePassword();
-
   }
 
   @Then("^I am loged in$")

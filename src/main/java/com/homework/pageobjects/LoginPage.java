@@ -48,7 +48,8 @@ public class LoginPage {
 
   public void providePassword(){
     passwordField.sendKeys("JoeCocker5");
-    passwordField.submit();
+    bobcatWait.withTimeout(5).until(ExpectedConditions.elementToBeClickable(passwordField));
+    passwordNext.click();
   }
 
   public boolean checkErrorMessage(){
