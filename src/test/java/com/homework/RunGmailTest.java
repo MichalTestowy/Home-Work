@@ -7,7 +7,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/main/features/example", format = {"pretty",
-    "html:target/cucumber-wikipedia-html-report", "json:target/cucumber-wikipedia-report.json"})
-public class RunWikipediaTest {
+    "html:target/cucumber-gmail-html-report", "json:target/cucumber-gmail-report.json"})
+public class RunGmailTest {
   // empty
 }
