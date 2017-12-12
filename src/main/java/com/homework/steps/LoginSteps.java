@@ -46,7 +46,7 @@ public class LoginSteps {
         loginPage.providePassword();
     }
 
-    @Then("^I am loged in$")
+    @Then("^I am logged in$")
     public void i_am_loged_in() {
         assertThat("URL contains inbox", inboxPage.urlContainsText("inbox"), is(Boolean.TRUE));
 

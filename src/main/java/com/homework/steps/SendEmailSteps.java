@@ -97,4 +97,13 @@ public class SendEmailSteps {
     public void i_create_new_mesage() {
         // Write code here that turns the phrase above into concrete actions
     }
+    @When("^I close the Compose window before sending it$")
+    public void i_close_the_Compose_window_before_sending_it() {
+        // Write code here that turns the phrase above into concrete actions
+    }
+
+    @Then("^The messeage should be saved in drafts$")
+    public void the_messeage_should_be_saved_in_drafts() {
+        // Write code here that turns the phrase above into concrete actions
+    }
 }

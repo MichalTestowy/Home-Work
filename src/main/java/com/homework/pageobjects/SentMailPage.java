@@ -4,6 +4,7 @@ import com.cognifide.qa.bb.provider.selenium.BobcatWait;
 import com.cognifide.qa.bb.qualifier.PageObject;
 import com.cognifide.qa.bb.utils.WebElementUtils;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,11 @@ import org.openqa.selenium.WebElement;
 @PageObject
 public class SentMailPage {
 
-    private static final String sentURL = "https://mail.google.com/mail/u/1/#sent";
+    private static final String titelXPath = "//span//b[contains(text(), '%s')]";
 
-    private static final String titeleXPath = "//span//b[contains(text(), '%s')]";
+    @Inject
+    @Named("sent.url")
+    private String sentURL;
 
     @Inject
     private WebDriver webDriver;
@@ -36,13 +39,9 @@ public class SentMailPage {
     }
 
     public boolean findLastTitle() {
-        WebElement titleElement = driver.findElement(By.xpath(String.format(titeleXPath, createEmailComponent.getTimeStamp())));
-        if (webElementUtils.isDisplayed(titleElement)) {
-            return true;
-        } else {
-            return false;
+        WebElement titleElement = driver.findElement(By.xpath(String.format(titelXPath, createEmailComponent.getTimeStamp())));
+        return  webElementUtils.isDisplayed(titleElement);
         }
 
     }
 
-}

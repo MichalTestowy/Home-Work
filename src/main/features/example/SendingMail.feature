@@ -3,7 +3,7 @@ Feature: I want to check if I'm able to send E-mails form gmail
   Background: Provided that the user is logged in
     Given Im loggded in
 
-  Scenario: User should be able to send
+  Scenario: User should be able to send email with simple text
     Given I create a new e-mail message
     When I click send
     Then The message is visible in sent folder
@@ -28,6 +28,6 @@ Feature: I want to check if I'm able to send E-mails form gmail
     Then the message is marked as read
 
   Scenario: User should be able save the message in drafts
-      Given I create new mesage
-      When I close the Compose window before sending it
-      Then The messeage should be saved in drafts
+    Given I create new mesage
+    When I close the Compose window before sending it
+    Then The messeage should be saved in drafts
