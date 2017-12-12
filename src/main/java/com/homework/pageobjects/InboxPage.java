@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @PageObject
 public class InboxPage {
-    private static final String URL =  "https://mail.google.com/mail/#inbox";
+
+    private static final String URL = "https://mail.google.com/mail/#inbox";
 
     @Inject
     private WebDriver webDriver;
@@ -21,15 +22,15 @@ public class InboxPage {
     @FindBy(css = "div[gh='cm']")
     private WebElement composeButton;
 
-    public boolean urlContainsText(String text){
-        if (URL.contains(text)){
+    public boolean urlContainsText(String text) {
+        if (URL.contains(text)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public InboxPage clickCompose(){
+    public InboxPage clickCompose() {
         bobcatWait.withTimeout(5).until(ExpectedConditions.elementToBeClickable(composeButton));
         composeButton.click();
         return this;

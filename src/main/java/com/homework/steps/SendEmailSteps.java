@@ -3,6 +3,7 @@ package com.homework.steps;
 import com.homework.pageobjects.CreateEmailComponent;
 import com.homework.pageobjects.SentMailPage;
 import cucumber.runtime.java.guice.ScenarioScoped;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -29,7 +30,7 @@ public class SendEmailSteps {
     private SentMailPage sentMailPage;
 
     @Given("^I create a new e-mail message$")
-    public void i_create_a_new_e_mail_message(){
+    public void i_create_a_new_e_mail_message() {
         inboxPage.clickCompose();
         createEmailComponent.addRecipient("mike.tste@gmail.com");
         createEmailComponent.addSubject("Test Message");
@@ -38,15 +39,15 @@ public class SendEmailSteps {
     }
 
     @When("^I click send$")
-    public void i_cleck_send(){
+    public void i_cleck_send() {
         createEmailComponent.sendEmail();
 
     }
 
     @Then("^The message is visible in sent folder$")
-    public void the_message_is_visible_in_sent_forlder(){
+    public void the_message_is_visible_in_sent_forlder() {
         sentMailPage.openSentMail();
-        assertTrue("The mail with timestamp is visible in on the page",sentMailPage.findLastTitle());
+        assertTrue("The mail with timestamp is visible in on the page", sentMailPage.findLastTitle());
 
     }
 }

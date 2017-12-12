@@ -15,46 +15,43 @@ import com.google.inject.Inject;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 
-/**
- * A helper class that can create a screenshot file and gather additional data.
- */
 public class FinishReport {
 
-  @Inject
-  private WebDriver webDriver;
+    @Inject
+    private WebDriver webDriver;
 
-  @Inject
-  private BrowserLogEntryCollector browserLogEntryCollector;
+    @Inject
+    private BrowserLogEntryCollector browserLogEntryCollector;
 
-  /**
-   * Creates screenshot and gathers additional information, embeds it in the scenario and closes webDriver.
-   */
-  @After
-  public void addDataAndClose(Scenario scenario) {
-    if (scenario.isFailed()) {
-      if(webDriver instanceof TakesScreenshot){
-        addScreenshot(scenario);
-      }
-      addPageLink(scenario);
-      addJSConsoleErrors(scenario);
+    /**
+     * Creates screenshot and gathers additional information, embeds it in the scenario and closes webDriver.
+     */
+    @After
+    public void addDataAndClose(Scenario scenario) {
+        if (scenario.isFailed()) {
+            if (webDriver instanceof TakesScreenshot) {
+                addScreenshot(scenario);
+            }
+            addPageLink(scenario);
+            addJSConsoleErrors(scenario);
+        }
+        webDriver.quit();
     }
-    webDriver.quit();
-  }
 
-  private void addJSConsoleErrors(Scenario scenario) {
-    List<LogEntry> browserLogEntries = browserLogEntryCollector.getBrowserLogEntries();
-    for (LogEntry browserLogEntry : browserLogEntries) {
-      scenario.write("Console Error: " + ((BrowserLogEntry) browserLogEntry).getMessage());
+    private void addJSConsoleErrors(Scenario scenario) {
+        List<LogEntry> browserLogEntries = browserLogEntryCollector.getBrowserLogEntries();
+        for (LogEntry browserLogEntry : browserLogEntries) {
+            scenario.write("Console Error: " + ((BrowserLogEntry) browserLogEntry).getMessage());
+        }
     }
-  }
 
-  private void addPageLink(Scenario scenario) {
-    scenario.write("Test page: " + "<a href=" + webDriver.getCurrentUrl() + ">link</a>");
-  }
+    private void addPageLink(Scenario scenario) {
+        scenario.write("Test page: " + "<a href=" + webDriver.getCurrentUrl() + ">link</a>");
+    }
 
-  private void addScreenshot(Scenario scenario) {
-    byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
-    scenario.embed(screenshot, "image/png");
-  }
+    private void addScreenshot(Scenario scenario) {
+        byte[] screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
+        scenario.embed(screenshot, "image/png");
+    }
 
 }

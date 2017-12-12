@@ -1,13 +1,11 @@
 package com.homework.pageobjects;
 
 import com.cognifide.qa.bb.provider.selenium.BobcatWait;
-import jdk.nashorn.internal.objects.annotations.Function;
+import com.cognifide.qa.bb.qualifier.PageObject;
+import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.cognifide.qa.bb.qualifier.PageObject;
-import com.google.inject.Inject;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @PageObject

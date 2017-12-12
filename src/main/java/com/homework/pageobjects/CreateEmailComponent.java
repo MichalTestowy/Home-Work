@@ -2,14 +2,11 @@ package com.homework.pageobjects;
 
 import com.cognifide.qa.bb.provider.selenium.BobcatWait;
 import com.cognifide.qa.bb.qualifier.PageObject;
-import jdk.nashorn.internal.objects.annotations.Function;
+import com.google.inject.Inject;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.cognifide.qa.bb.qualifier.PageObject;
-import com.google.inject.Inject;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.text.SimpleDateFormat;
@@ -35,41 +32,38 @@ public class CreateEmailComponent {
     @FindBy(css = "[name='to']")
     private WebElement recipientAddress;
 
-    @FindBy (css = "[name='subjectbox']")
+    @FindBy(css = "[name='subjectbox']")
     private WebElement subject;
 
-    @FindBy (xpath = "//div[contains(@aria-label, 'Ctrl-Enter')]")
+    @FindBy(xpath = "//div[contains(@aria-label, 'Ctrl-Enter')]")
     private WebElement sendButton;
 
     @FindBy(xpath = "//span[contains(text(), 'Sending...')]")
     private WebElement sendingPrompt;
 
-    public void addRecipient(String mailAddress){
+    public void addRecipient(String mailAddress) {
         bobcatWait.withTimeout(10).until(ExpectedConditions.visibilityOf(recipientAddress));
         recipientAddress.click();
         recipientAddress.sendKeys(mailAddress);
         recipientAddress.sendKeys(Keys.ENTER);
     }
 
-    public void addSubject(String Subject){
+    public void addSubject(String Subject) {
         bobcatWait.withTimeout(5).until(ExpectedConditions.visibilityOf(subject));
         subject.click();
-        subject.sendKeys(Subject+ " " + timeStamp);
+        subject.sendKeys(Subject + " " + timeStamp);
     }
 
-    public void addMessageBody(String Message){
+    public void addMessageBody(String Message) {
         subject.click();
         subject.sendKeys(Keys.TAB, Message);
     }
 
-    public void sendEmail(){
+    public void sendEmail() {
         bobcatWait.withTimeout(5).until(ExpectedConditions.elementToBeClickable(sendButton));
         sendButton.click();
         bobcatWait.withTimeout(10).until(ExpectedConditions.invisibilityOf(sendingPrompt));
 
     }
-
-
-
 
 }
