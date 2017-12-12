@@ -30,6 +30,9 @@ public class CreateEmailComponent {
     @FindBy (css = "[name='subjectbox']")
     private WebElement subject;
 
+    @FindBy (xpath = "//div[contains(@aria-label, 'Ctrl-Enter')]")
+    private WebElement sendButton;
+
     public void addRecipient(String adresMailowy){
         bobcatWait.withTimeout(5).until(ExpectedConditions.visibilityOf(recipientAddress));
         recipientAddress.click();
@@ -48,7 +51,9 @@ public class CreateEmailComponent {
     }
 
     public void sendEmail(){
-        
+        bobcatWait.withTimeout(5).until(ExpectedConditions.elementToBeClickable(sendButton));
+        sendButton.click();
+
     }
 
 

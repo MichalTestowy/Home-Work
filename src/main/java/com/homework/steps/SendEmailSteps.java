@@ -37,7 +37,7 @@ public class SendEmailSteps {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("^The message is visible in sent forlder$")
+    @Then("^The message is visible in sent folder$")
     public void the_message_is_visible_in_sent_forlder(){
         // Write code here that turns the phrase above into concrete actions
     }
