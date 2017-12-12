@@ -1,10 +1,12 @@
 package com.homework.steps;
 
 import com.homework.pageobjects.CreateEmailComponent;
+import com.homework.pageobjects.SentMailPage;
 import cucumber.runtime.java.guice.ScenarioScoped;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.cognifide.qa.bb.provider.selenium.BobcatWait;
 import com.google.inject.Inject;
@@ -23,6 +25,9 @@ public class SendEmailSteps {
     @Inject
     private CreateEmailComponent createEmailComponent;
 
+    @Inject
+    private SentMailPage sentMailPage;
+
     @Given("^I create a new e-mail message$")
     public void i_create_a_new_e_mail_message(){
         inboxPage.clickCompose();
@@ -34,11 +39,14 @@ public class SendEmailSteps {
 
     @When("^I click send$")
     public void i_cleck_send(){
-        // Write code here that turns the phrase above into concrete actions
+        createEmailComponent.sendEmail();
+
     }
 
     @Then("^The message is visible in sent folder$")
     public void the_message_is_visible_in_sent_forlder(){
-        // Write code here that turns the phrase above into concrete actions
+        sentMailPage.openSentMail();
+        assertTrue("The mail with timestamp is visible in on the page",sentMailPage.findLastTitle());
+
     }
 }

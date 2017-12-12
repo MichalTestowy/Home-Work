@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @PageObject
 public class InboxPage {
-    private static final String URL =  "https://mail.google.com/mail/?pc=topnav-about-en#inbox";
+    private static final String URL =  "https://mail.google.com/mail/#inbox";
 
     @Inject
     private WebDriver webDriver;

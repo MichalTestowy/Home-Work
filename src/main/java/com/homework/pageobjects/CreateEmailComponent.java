@@ -12,11 +12,19 @@ import com.cognifide.qa.bb.qualifier.PageObject;
 import com.google.inject.Inject;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.text.SimpleDateFormat;
+
 
 @PageObject
 public class CreateEmailComponent {
 
     private static final String RECIPIENT = "mike.tste@gmail.com";
+
+    private String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
 
     @Inject
     private WebDriver webDriver;
@@ -33,16 +41,20 @@ public class CreateEmailComponent {
     @FindBy (xpath = "//div[contains(@aria-label, 'Ctrl-Enter')]")
     private WebElement sendButton;
 
-    public void addRecipient(String adresMailowy){
-        bobcatWait.withTimeout(5).until(ExpectedConditions.visibilityOf(recipientAddress));
+    @FindBy(xpath = "//span[contains(text(), 'Sending...')]")
+    private WebElement sendingPrompt;
+
+    public void addRecipient(String mailAddress){
+        bobcatWait.withTimeout(10).until(ExpectedConditions.visibilityOf(recipientAddress));
         recipientAddress.click();
-        recipientAddress.sendKeys(adresMailowy);
+        recipientAddress.sendKeys(mailAddress);
+        recipientAddress.sendKeys(Keys.ENTER);
     }
 
     public void addSubject(String Subject){
         bobcatWait.withTimeout(5).until(ExpectedConditions.visibilityOf(subject));
         subject.click();
-        subject.sendKeys(Subject);
+        subject.sendKeys(Subject+ " " + timeStamp);
     }
 
     public void addMessageBody(String Message){
@@ -53,6 +65,7 @@ public class CreateEmailComponent {
     public void sendEmail(){
         bobcatWait.withTimeout(5).until(ExpectedConditions.elementToBeClickable(sendButton));
         sendButton.click();
+        bobcatWait.withTimeout(10).until(ExpectedConditions.invisibilityOf(sendingPrompt));
 
     }
 
