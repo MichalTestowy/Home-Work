@@ -37,7 +37,7 @@ public class LoginPage {
     @FindBy(css = "div[aria-live='assertive']")
     private WebElement inncorrectLoginMessage;
 
-    public LoginPage open() {
+    public LoginPage openInboxURL() {
         webDriver.get(inboxURL);
         return this;
     }

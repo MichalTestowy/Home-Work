@@ -12,7 +12,7 @@ import org.openqa.selenium.WebElement;
 @PageObject
 public class SentMailPage {
 
-    private static final String titelXPath = "//span//b[contains(text(), '%s')]";
+    private static final String subjectXPath = "//span//b[contains(text(), '%s')]";
 
     @Inject
     @Named("sent.url")
@@ -39,9 +39,7 @@ public class SentMailPage {
     }
 
     public boolean findLastTitle() {
-        WebElement titleElement = driver.findElement(By.xpath(String.format(titelXPath, createEmailComponent.getTimeStamp())));
+        WebElement titleElement = driver.findElement(By.xpath(String.format(subjectXPath, createEmailComponent.getTimeStamp())));
         return  webElementUtils.isDisplayed(titleElement);
         }
-
     }
-

@@ -25,7 +25,7 @@ public class LoginSteps {
 
     @Given("^Im loggded in$")
     public void im_logded_in() {
-        loginPage.open();
+        loginPage.openInboxURL();
         loginPage.provideUserName("mike.tste@gmail.com");
         loginPage.providePassword();
 
@@ -33,7 +33,7 @@ public class LoginSteps {
 
     @Given("^I have opened main page$")
     public void I_have_opened_main_page() {
-        loginPage.open();
+        loginPage.openInboxURL();
     }
 
     @When("^I provide correct user login$")
